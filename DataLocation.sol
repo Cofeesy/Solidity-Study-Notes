@@ -37,13 +37,16 @@ contract DataLocation{
        //calldata(调用数据)用法：
          //和memory存储相似，用来修饰输入参数
          //优点：这样内部函数可以遍历 calldata 的数组，而不用再复制到内存了。
+         //但是请注意传过来的calldate修饰的类型是只读的(数据不可修改的)，也就是无法在 calldata 变量中创建新值或将某些内容复制到 calldata变量 
         _internal(t);
         return memArr;
     }
 
+
+    //uint[] calldata arr01;//使用calldata修饰状态变量报错，说明calldata只是用来修饰传入参数的，并且应用场景就是保证!状态!(这里的状态是storage中的状态，而非内存或栈中的变量之类的信息)不会被随意改变
+    
     //
     function _internal(uint[] calldata y) private{
-      //但是请注意传过来的calldate修饰的类型是只读的(数据不可修改的)，也就是无法在 calldata 变量中创建新值或将某些内容复制到 calldata变量
       //下面这段代码去掉注释就会报错
       //y[0]=1;
       uint x = y[0];

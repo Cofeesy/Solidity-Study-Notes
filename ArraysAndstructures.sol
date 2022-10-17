@@ -17,9 +17,8 @@ contract ArraysAndstructures{
     uint[] _arr04;
 
     //在内存中创建定长数组(两种方式)：
-    function creatmemArr() external returns(uint[] memory){
+    function creatmemArr(uint[] calldata t) external returns(uint[] memory){
       //uint public arr05;在内存中创建一个类似于状态变量的数组是不可行的
-      
       //第一种：
       //正确方法以及格式：
       //注意两点：
@@ -40,9 +39,14 @@ contract ArraysAndstructures{
         return arr05;
         //2.而返回uint类型的内存变量不需要
         //return arr05[0];
-      //第二种：   
+      //第二种：函数外部声明不初始化然后在函数内部进行变量赋值   
         _arr04 = new uint[](7);
         arr03 = new string[](3);
+      
+      //数组切片：
+        //截至目前，数组切片仅用于调用数据数组,即被calldata修饰的数组;目前没有以go语言中切片的类似用法
+        t[0:1];
+        //arr01[0:1];
 
     }
     
@@ -76,6 +80,7 @@ contract ArraysAndstructures{
         uint length = arr04.length;
         return length;        
       }
+
     
     //结构体
     struct Person{
