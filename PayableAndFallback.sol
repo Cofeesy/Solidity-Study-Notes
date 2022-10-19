@@ -8,6 +8,8 @@ contract PayableAndFallback{
       //1.使用payable修饰函数：表示该函数可以接收以太坊主币的传入,也就是可以给合约地址发送主币，发送后可以通过调用看到该地址上的主币余额
       //2.使用payable修饰地址：表示该地址可以接收以太坊主币
         //如果该地址有构造器函数传入，构造器内的变量也需要payable修饰
+      //3.payable的地址拥有balance和transfer()两个成员，对应即查账户余额和给另一个账户转账
+  
 
     //1.可以支付主币的函数：
     function deposit() external payable{}

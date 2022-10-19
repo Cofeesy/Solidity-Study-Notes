@@ -13,6 +13,7 @@ contract Counter{
 
     //1.这是状态变量,会被加载到内存Menmory区
     //该变量可视范围为公开，合约内外部都可调用
+      //被public修饰的变量会自动生成 getter函数，用于查询数值-->所以以remix为例，被public修饰的变量可以被读取而不消耗是通过getter函数的
     uint public count;//默认值是uint256类型的0
    
     int public i;//默认值是int256类型:0
@@ -46,4 +47,6 @@ contract Counter{
         //inc();-->会报错
         count -=1;
     }
+
+    //&& 和 ||运算符遵循短路规则，这意味着，假如存在f(x) || g(y)的表达式，如果f(x)是true，g(y)不会被计算，即使它和f(x)的结果是相反的（或者说f(x）&&g(y),如果f(x)是false，g(y)不会被计算）
 }

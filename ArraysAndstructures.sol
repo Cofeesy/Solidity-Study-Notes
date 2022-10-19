@@ -14,22 +14,28 @@ contract ArraysAndstructures{
     //动态数组(变长数组)
     string[] public arr03;
     uint[] public arr04 = [1,2,3];
-    uint[] _arr04;
+    uint[]  _arr04;
 
+    //uint [] _arr05 = new uint[](7);
+ 
     //在内存中创建定长数组(两种方式)：
     function creatmemArr(uint[] calldata t) external returns(uint[] memory){
-      //uint public arr05;在内存中创建一个类似于状态变量的数组是不可行的
+      //uint[9] memory public arr05;//在内存中创建一个被public修饰的变量是不行的
       //第一种：
       //正确方法以及格式：
       //注意两点：
-        //1.memory关键字是不可缺少的
-        //2.内存中只能创建定长数组，也就是说必须指定长度
-        //3.并且只有在内存中才能使用new关键字创建
+        //1.内存中可以创建动态数组(编译不会报错，但是还是遵循在内存中只能创建内存数组)
+        //2.在内存中如果使用new关键字创建，必须声明长度，并且声明长度后就不能改变长度
       uint [] memory arr05 = new uint[](5);
+      //针对注意1：不应该创建此内存数组
+      uint [] memory arr09;
+      arr09[0] = 9;
 
+      //或者创建非内存数组
+      uint[] storage arr10;
       
-      //针对注意第二点可以知道：
-        //pop方法和push方法无法对内存数组使用
+      //针对注意第2点和第3点可以知道：
+        //pop方法和push方法无法对内存数组使用，因为pop和push都会改变数组的长度
 
       //只能够通过索引操作内存数组：
         arr05[0] = 1;
@@ -58,7 +64,7 @@ contract ArraysAndstructures{
       //push方法:
       //向变长数组中添加元素
       //arr04.push(5);//报错-->为什么
-      //数组的push方法需要放在方法体内   
+        //数组的push方法需要放在方法体内   
     function pushIn() public{
       //arr01.push(6);-->定长数组不能调用push方法向里面添加存储元素
        arr03.push("rr");

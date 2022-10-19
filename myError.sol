@@ -47,6 +47,13 @@ contract myError{
        a++;
    }
 
-   //自定义错误-->节约gas费的小方法
-   error MyError(); 
+   //1.不带参数的自定义错误-->节约gas费的小方法
+   error MyError01();
+
+   //2.带参数的自定义错误：
+   error MyError02(address _this);
+
+   function testMyError() external view{
+       revert MyError02(msg.sender);
+   } 
 }

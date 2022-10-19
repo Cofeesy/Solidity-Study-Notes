@@ -32,6 +32,12 @@ contract Y is X{
       //1.表示重写所继承方法
       //2.如果该方法重写了父合约中的方法，就必须加上override关键字
     function foo() public pure virtual override returns (string memory){
+
+    //调用父级合约的两种方式：
+      //1.直接调用:使用父级合约的名字调用
+        X.bax();
+      //super关键字：使用super关键字调用!最近!的父级合约    
+        super.bax();
         return "Y1";
     }
 

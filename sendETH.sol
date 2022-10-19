@@ -35,9 +35,11 @@ contract sendEther{
         //调用call方法的地址是可以不需要payable关键字修饰的
         function sendViaCall(address _to) external payable{
             //注意call方法使用格式：{}里面是类似对象的value值，()里面对应的是发送的数据
-            //注意接收格式：这里的接收()是不可没有的，并且可以省略data数据，然后留下一个","号表示不接收data数据：
+            //注意接收格式：这里的接收()是不可没有的，并且可以省略data数据，然后留下一个","号表示不接收data数据：即solidity使用解构式赋值的规则，即支持读取函数的全部或部分返回值，也就是说，用逗号隔开按顺序排列的返回值中可以有空值（但是","不能少）
             //(bool success,bytes memory data) =  _to.call{value:125}(" ");-->这里注意发送数据("")和(" ")的区别：前者表示数据才为空，后者数据不为空
             (bool success, ) =  _to.call{value:125}("");
+            
+
             
             //一般搭配错误处理进行操作：
             require(success,"call failed");        
